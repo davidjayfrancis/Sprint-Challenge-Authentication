@@ -10,15 +10,17 @@ router.post("/register", (req, res) => {
   user.password = hash;
 
   Users.add(user).then(saved => {
+    console.log(saved);
     res
       .status(201)
       .json({
         welcomeMessage: `Welcome to the club, ${saved.username}`,
         memberinfo: saved
       })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+
+  })
+  .catch(err => {
+    res.status(500).json(err);
   });
 });
 
